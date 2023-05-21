@@ -15,8 +15,8 @@ data "aws_vpc" "default" {
 
 # create security group
 
-resource "aws_security_group" "allow-traffic" {
-  name        = "allow-traffic"
+resource "aws_security_group" "github-act" {
+  name        = "github-act"
   description = "Allow TLS inbound traffic"
   vpc_id      = data.aws_vpc.default.id
 

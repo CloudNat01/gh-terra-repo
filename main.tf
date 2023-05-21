@@ -64,7 +64,7 @@ resource "aws_security_group" "allow-traffic" {
   }
 
   tags = {
-    Name = "allow-traffic"
+    Name = "${var.name}-sg"
   }
 }
 

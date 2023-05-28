@@ -76,16 +76,6 @@ resource "aws_instance" "web" {
   key_name      = aws_key_pair.deployer.key_name
   vpc_security_group_ids = [aws_security_group.github-act.id]
 
-  user_data = <<-EOF
-    #!/bin/bash
-    sudo apt-get install -y openjdk-11-jdk
-    sudo wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
-    sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
-    sudo sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5BA31D57EF5975CA
-    sudo apt-get update
-    sudo apt-get install -y jenkins
-  EOF
-
   tags = {
     Name = "${var.name}-server"
   }

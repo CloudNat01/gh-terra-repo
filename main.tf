@@ -15,8 +15,8 @@ data "aws_vpc" "default" {
 
 # create security group
 
-resource "aws_security_group" "allow-traffic" {
-  name        = "allow-traffic"
+resource "aws_security_group" "github-act" {
+  name        = "github-act"
   description = "Allow TLS inbound traffic"
   vpc_id      = data.aws_vpc.default.id
 
@@ -64,7 +64,7 @@ resource "aws_security_group" "allow-traffic" {
   }
 
   tags = {
-    Name = "allow-traffic"
+    Name = "${var.name}-sg"
   }
 }
 
@@ -74,7 +74,7 @@ resource "aws_instance" "web" {
   ami           = var.ami
   instance_type = var.instance-type
   key_name      = aws_key_pair.deployer.key_name
-  vpc_security_group_ids = [aws_security_group.allow-traffic.id]
+  vpc_security_group_ids = [aws_security_group.github-act.id]
 
   tags = {
     Name = "${var.name}-server"

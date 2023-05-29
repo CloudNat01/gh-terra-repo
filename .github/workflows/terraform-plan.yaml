@@ -1,7 +1,7 @@
 name: terraform plan
 
 on: 
-  pull_request:
+  push:
     branches:
       - main
 
@@ -30,8 +30,8 @@ jobs:
         run: terraform plan -no-color
         continue-on-error: true
       
-      # - name: Terraform apply
-      #   run: terraform apply  --auto-approve  
+      - name: Terraform apply
+        run: terraform apply  --auto-approve  
 
-      - name: Terraform destroy
-        run: terraform destroy  --auto-approve  
+      # - name: Terraform destroy
+      #   run: terraform destroy  --auto-approve  
